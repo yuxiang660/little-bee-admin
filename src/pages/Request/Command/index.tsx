@@ -1,3 +1,5 @@
+import styles from './index.less';
+
 import React from 'react';
 import { Row, Select, Input, Button } from 'antd';
 import { Dispatch, AnyAction } from 'redux';
@@ -39,12 +41,15 @@ const Command: React.FC<CommandProps> = props => {
             </Option>
           ))}
         </Select>
-        <Input value={request.url} style={{ width: 'calc(100% - 200px)' }} />
-        <Button size="large">Params</Button>
+        <Input value={request.url} size="large" style={{ width: 'calc(100% - 200px)' }} />
+        <Button size="large" type="primary">
+          Params
+        </Button>
       </InputGroup>
       <Button size="large" type="primary" style={{ width: 100 }}>
         Send
       </Button>
+      <div className={styles.result}>Results</div>
     </Row>
   );
 };

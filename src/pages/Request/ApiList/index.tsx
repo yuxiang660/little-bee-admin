@@ -11,12 +11,20 @@ interface ApiListProps {
   dispatch: Dispatch<AnyAction>;
 }
 
+const methodTagColor = {
+  GET: 'green',
+  POST: 'orange',
+  DELETE: 'red',
+  PUT: 'geekblue',
+};
+
 const ApiList: React.FC<ApiListProps> = props => (
   <List
+    className={styles.requestList}
     dataSource={Object.values(api)}
     renderItem={item => (
       <List.Item
-        className={styles.pre}
+        className={styles.listItem}
         onClick={() => {
           const { dispatch } = props;
           dispatch({
@@ -25,8 +33,10 @@ const ApiList: React.FC<ApiListProps> = props => (
           });
         }}
       >
-        <span style={{ width: 60 }}>
-          <Tag style={{ marginRight: 10 }}>{item.method}</Tag>
+        <span style={{ width: 72 }}>
+          <Tag style={{ marginRight: 8 }} color={methodTagColor[item.method]}>
+            {item.method}
+          </Tag>
         </span>
         {item.url}
       </List.Item>

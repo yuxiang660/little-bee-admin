@@ -1,8 +1,24 @@
 @import '~antd/lib/style/themes/default.less';
 
-.pre {
-  margin: 12px 0;
-  padding: 12px 20px;
-  background: @input-bg;
-  box-shadow: @card-shadow;
+@transition-ease-in: all 0.3s ease-out;
+@hover-color: #f9f9fc;
+
+.background-hover {
+  transition: @transition-ease-in;
+  &:hover {
+    background-color: @hover-color;
+  }
+}
+
+.requestList {
+  padding-right: 24px;
+  margin-bottom: 24px;
+  .listItem {
+    cursor: pointer;
+    padding-left: 8px;
+    &.lstItemActive {
+      background-color: @hover-color;
+    }
+    .background-hover();
+  }
 }
