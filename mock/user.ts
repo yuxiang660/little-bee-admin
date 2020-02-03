@@ -7,10 +7,10 @@ function getFakeCaptcha(req: Request, res: Response) {
 export default {
   // 支持值为 Object 和 Array
   'GET /api/currentUser': {
-    name: 'Serati Ma',
-    avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
+    name: 'Little Bee',
+    avatar: 'http://www.gravatar.com/avatar/ff868b07ddd7c65f97993d8fe616cf3e',
     userid: '00000001',
-    email: 'antdesign@alipay.com',
+    email: 'yuxiang660@gmail.com',
     signature: '海纳百川，有容乃大',
     title: '交互专家',
     group: '蚂蚁金服－某某某事业群－某某平台部－某某技术部－UED',
