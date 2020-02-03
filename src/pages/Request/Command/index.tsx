@@ -42,7 +42,17 @@ const Command: React.FC<CommandProps> = props => {
           ))}
         </Select>
         <Input value={request.url} size="large" style={{ width: 'calc(100% - 200px)' }} />
-        <Button ghost size="large" type="primary">
+        <Button
+          ghost
+          size="large"
+          type="primary"
+          onClick={() => {
+            const { dispatch } = props;
+            dispatch({
+              type: 'request/toggleParams',
+            });
+          }}
+        >
           Params
         </Button>
       </InputGroup>
