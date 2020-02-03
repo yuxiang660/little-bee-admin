@@ -41,25 +41,17 @@ const Command: React.FC<CommandProps> = props => {
             </Option>
           ))}
         </Select>
-        <Input value={request.url} size="large" style={{ width: 'calc(100% - 200px)' }} />
-        <Button
-          ghost
+        <Input
+          value={request.url}
           size="large"
-          type="primary"
-          onClick={() => {
-            const { dispatch } = props;
-            dispatch({
-              type: 'request/toggleParams',
-            });
-          }}
-        >
-          Params
-        </Button>
+          style={{ width: 'calc(100% - 120px)' }}
+          placeholder="URL Including Params"
+        />
       </InputGroup>
       <Button size="large" type="primary" style={{ width: 100 }}>
         Send
       </Button>
-      <div className={styles.result}>Results</div>
+      <div className={styles.result}></div>
     </Row>
   );
 };

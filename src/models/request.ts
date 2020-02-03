@@ -1,15 +1,8 @@
 import { Reducer } from 'redux';
 
-interface QueryParams {
-  key: string;
-  value: string;
-}
-
 export interface RequestStateType {
   method?: 'POST' | 'GET' | 'PUT' | 'PATCH' | 'DELETE';
   url?: string;
-  hasParams?: boolean;
-  queryParams?: QueryParams[];
 }
 
 interface RequestModelType {
@@ -18,7 +11,6 @@ interface RequestModelType {
   reducers: {
     changeApiRoute: Reducer<RequestStateType>;
     changeMethod: Reducer<RequestStateType>;
-    toggleParams: Reducer<RequestStateType>;
   };
 }
 
@@ -28,8 +20,6 @@ const Model: RequestModelType = {
   state: {
     method: 'GET',
     url: '',
-    hasParams: false,
-    queryParams: [],
   },
 
   reducers: {
@@ -45,9 +35,6 @@ const Model: RequestModelType = {
         ...state,
         method,
       };
-    },
-    toggleParams(state) {
-      return { ...state, hasParams: state ? !state.hasParams : false };
     },
   },
 };

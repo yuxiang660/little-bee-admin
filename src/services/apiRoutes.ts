@@ -9,7 +9,7 @@ interface ApiRoutesMap {
 
 const apiRoutes: ApiRoutesMap = {
   login: { method: 'POST', url: '/api/login/account' },
-  queryCaptcha: { method: 'GET', url: '/api/login/captcha' },
+  queryCaptcha: { method: 'GET', url: '/api/login/captcha?mobile=' },
 
   getAllUsers: { method: 'GET', url: '/api/users' },
   getCurrentUser: { method: 'GET', url: '/api/currentUser' },
