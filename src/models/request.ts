@@ -16,6 +16,7 @@ interface RequestModelType {
   state: RequestStateType;
   reducers: {
     changeApiRoute: Reducer<RequestStateType>;
+    changeMethod: Reducer<RequestStateType>;
   };
 }
 
@@ -34,6 +35,12 @@ const Model: RequestModelType = {
         ...state,
         method: payload.method,
         url: payload.url,
+      };
+    },
+    changeMethod(state, { method }) {
+      return {
+        ...state,
+        method,
       };
     },
   },
