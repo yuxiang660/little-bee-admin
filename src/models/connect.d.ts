@@ -9,15 +9,22 @@ import { RequestStateType } from './request';
 
 export { GlobalModelState, SettingModelState, UserModelState };
 
+// Loading state is handled by DVA framework, which represents active states of effect function.
+// The boolean value indicates whether current effect is working, which can be used to render
+// loading effect. For example, Login component monitors 'login/login' effect. If the effect
+// returns true, it means "I'm logging, please wait". At most time, the value should be false,
+// or the field may be undefined.
+// 'effects' field represents active effect functions of models. 'models' field represents active
+// models.
 export interface Loading {
   global: boolean;
   effects: { [key: string]: boolean | undefined };
   models: {
     global?: boolean;
-    menu?: boolean;
+    login?: boolean;
+    request?: boolean;
     setting?: boolean;
     user?: boolean;
-    login?: boolean;
   };
 }
 

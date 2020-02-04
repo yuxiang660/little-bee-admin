@@ -7,16 +7,15 @@ import ProLayout, {
   MenuDataItem,
   BasicLayoutProps as ProLayoutProps,
   Settings,
-  DefaultFooter,
 } from '@ant-design/pro-layout';
 import { formatMessage } from 'umi-plugin-react/locale';
 import React, { useEffect } from 'react';
 import { Link } from 'umi';
 import { Dispatch } from 'redux';
 import { connect } from 'dva';
-import { GithubOutlined } from '@ant-design/icons';
 import { Result, Button } from 'antd';
 import Authorized from '@/utils/Authorized';
+import Footer from '@/components/Footer';
 import RightContent from '@/components/GlobalHeader/RightContent';
 import { ConnectState } from '@/models/connect';
 import { getAuthorityFromRouter } from '@/utils/utils';
@@ -59,27 +58,7 @@ const menuDataRender = (menuList: MenuDataItem[]): MenuDataItem[] =>
     return Authorized.check(item.authority, localItem, null) as MenuDataItem;
   });
 
-const defaultFooterDom = (
-  <DefaultFooter
-    copyright="2020 Little Bee"
-    links={[
-      {
-        key: 'Little Bee',
-        title: 'Little Bee',
-        href: 'https://github.com/yuxiang660',
-        blankTarget: true,
-      },
-      {
-        key: 'github',
-        title: <GithubOutlined />,
-        href: 'https://github.com/yuxiang660/little-bee-admin',
-        blankTarget: true,
-      },
-    ]}
-  />
-);
-
-const footerRender: BasicLayoutProps['footerRender'] = () => defaultFooterDom;
+const footerRender: BasicLayoutProps['footerRender'] = Footer;
 
 const BasicLayout: React.FC<BasicLayoutProps> = props => {
   const {
