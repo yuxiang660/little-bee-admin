@@ -3,6 +3,7 @@ import { Reducer } from 'redux';
 export interface RequestStateType {
   method?: 'POST' | 'GET' | 'PUT' | 'PATCH' | 'DELETE';
   url?: string;
+  body?: string;
 }
 
 interface RequestModelType {
@@ -10,7 +11,6 @@ interface RequestModelType {
   state: RequestStateType;
   reducers: {
     changeApiRoute: Reducer<RequestStateType>;
-    changeMethod: Reducer<RequestStateType>;
   };
 }
 
@@ -26,14 +26,9 @@ const Model: RequestModelType = {
     changeApiRoute(state, { payload }) {
       return {
         ...state,
-        method: payload.method,
-        url: payload.url,
-      };
-    },
-    changeMethod(state, { method }) {
-      return {
-        ...state,
-        method,
+        method: payload.method ? payload.method : state?.method,
+        url: payload.url ? payload.url : state?.url,
+        body: payload.body ? payload.body : undefined,
       };
     },
   },

@@ -10,6 +10,8 @@ import { RequestStateType } from '@/models/request';
 
 const { Option } = Select;
 const InputGroup = Input.Group;
+const { TextArea } = Input;
+
 const methods = ['POST', 'GET', 'PUT', 'PATCH', 'DELETE'];
 
 interface CommandProps {
@@ -29,8 +31,8 @@ const Command: React.FC<CommandProps> = props => {
           onChange={method => {
             const { dispatch } = props;
             dispatch({
-              type: 'request/changeMethod',
-              method,
+              type: 'request/changeApiRoute',
+              payload: { method },
             });
           }}
         >
@@ -43,12 +45,32 @@ const Command: React.FC<CommandProps> = props => {
         <Input
           value={request.url}
           style={{ width: 'calc(100% - 120px)' }}
-          placeholder="URL Including Params"
+          placeholder="URL Including Query Params"
+          onChange={e => {
+            const { dispatch } = props;
+            dispatch({
+              type: 'request/changeApiRoute',
+              payload: { url: e.target.value },
+            });
+          }}
         />
       </InputGroup>
       <Button type="primary" style={{ width: 100 }}>
         Send
       </Button>
+      <div style={{ margin: '24px 0' }} />
+      <TextArea
+        value={request.body}
+        autoSize={{ minRows: 2, maxRows: 6 }}
+        placeholder={'Body payload, such as:{"userName":"admin","password":"admin"}'}
+        onChange={e => {
+          const { dispatch } = props;
+          dispatch({
+            type: 'request/changeApiRoute',
+            payload: { body: e.target.value },
+          });
+        }}
+      />
       <div className={styles.result}></div>
     </Row>
   );
