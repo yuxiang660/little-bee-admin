@@ -55,14 +55,24 @@ const Command: React.FC<CommandProps> = props => {
           }}
         />
       </InputGroup>
-      <Button type="primary" style={{ width: 100 }}>
+      <Button
+        type="primary"
+        style={{ width: 100 }}
+        onClick={() => {
+          const { dispatch } = props;
+          dispatch({
+            type: 'request/send',
+            payload: { method: request.method, url: request.url, body: request.body },
+          });
+        }}
+      >
         Send
       </Button>
       <div style={{ margin: '24px 0' }} />
       <TextArea
         value={request.body}
         autoSize={{ minRows: 2, maxRows: 6 }}
-        placeholder={'Body payload, such as:{"userName":"admin","password":"admin"}'}
+        placeholder={'Body payload (JSON format), such as:{"userName":"admin","password":"admin"}'}
         onChange={e => {
           const { dispatch } = props;
           dispatch({
@@ -71,7 +81,7 @@ const Command: React.FC<CommandProps> = props => {
           });
         }}
       />
-      <div className={styles.result}></div>
+      <div className={styles.result}>{request.respond}</div>
     </Row>
   );
 };

@@ -1,9 +1,13 @@
 import { Reducer } from 'redux';
+import { Effect } from 'dva';
+
+import { apiRequest } from '@/services/apiRoutes';
 
 export interface RequestStateType {
   method?: 'POST' | 'GET' | 'PUT' | 'PATCH' | 'DELETE';
   url?: string;
   body?: string;
+  respond?: string;
 }
 
 interface RequestModelType {
@@ -12,6 +16,10 @@ interface RequestModelType {
   reducers: {
     changeApiRoute: Reducer<RequestStateType>;
     changeBody: Reducer<RequestStateType>;
+    saveResponse: Reducer<RequestStateType>;
+  };
+  effects: {
+    send: Effect;
   };
 }
 
@@ -36,6 +44,22 @@ const Model: RequestModelType = {
         ...state,
         body: payload.body ? payload.body : undefined,
       };
+    },
+    saveResponse(state, action) {
+      return {
+        ...state,
+        respond: JSON.stringify(action.payload),
+      };
+    },
+  },
+
+  effects: {
+    *send({ payload: { method, url, body } }, { call, put }) {
+      const response = yield call(apiRequest, method, url, body);
+      yield put({
+        type: 'saveResponse',
+        payload: response,
+      });
     },
   },
 };
