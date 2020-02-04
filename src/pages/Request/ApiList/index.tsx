@@ -29,7 +29,11 @@ const ApiList: React.FC<ApiListProps> = props => (
           const { dispatch } = props;
           dispatch({
             type: 'request/changeApiRoute',
-            payload: item,
+            payload: { method: item.method, url: item.url },
+          });
+          dispatch({
+            type: 'request/changeBody',
+            payload: { body: item.body },
           });
         }}
       >
