@@ -55,10 +55,10 @@ const Model: RequestModelType = {
 
   effects: {
     *send({ payload: { method, url, body } }, { call, put }) {
-      const response = yield call(apiRequest, method, url, body);
+      const { data } = yield call(apiRequest, method, url, body);
       yield put({
         type: 'saveResponse',
-        payload: response,
+        payload: data,
       });
     },
   },

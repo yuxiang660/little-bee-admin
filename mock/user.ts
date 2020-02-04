@@ -80,7 +80,7 @@ export default {
   'POST /api/login/account': (req: Request, res: Response) => {
     const { password, userName, type } = req.body;
     if (password === 'admin' && userName === 'admin') {
-      res.send({
+      res.status(200).send({
         status: 'ok',
         type,
         currentAuthority: 'admin',
@@ -88,21 +88,21 @@ export default {
       return;
     }
     if (password === 'admin' && userName === 'user') {
-      res.send({
+      res.status(200).send({
         status: 'ok',
         type,
         currentAuthority: 'user',
       });
       return;
     }
-    res.send({
+    res.status(401).send({
       status: 'error',
       type,
       currentAuthority: 'guest',
     });
   },
   'POST /api/register': (req: Request, res: Response) => {
-    res.send({ status: 'ok', currentAuthority: 'user' });
+    res.status(200).send({ status: 'ok', currentAuthority: 'user' });
   },
   'GET /api/500': (req: Request, res: Response) => {
     res.status(500).send({
