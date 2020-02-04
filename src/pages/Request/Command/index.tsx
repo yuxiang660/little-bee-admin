@@ -22,9 +22,8 @@ const Command: React.FC<CommandProps> = props => {
 
   return (
     <Row justify="space-between">
-      <InputGroup compact size="large" style={{ flex: 1 }}>
+      <InputGroup compact style={{ flex: 1 }}>
         <Select
-          size="large"
           value={request.method}
           style={{ width: 100 }}
           onChange={method => {
@@ -43,12 +42,11 @@ const Command: React.FC<CommandProps> = props => {
         </Select>
         <Input
           value={request.url}
-          size="large"
           style={{ width: 'calc(100% - 120px)' }}
           placeholder="URL Including Params"
         />
       </InputGroup>
-      <Button size="large" type="primary" style={{ width: 100 }}>
+      <Button type="primary" style={{ width: 100 }}>
         Send
       </Button>
       <div className={styles.result}></div>
