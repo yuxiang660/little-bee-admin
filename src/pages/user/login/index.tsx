@@ -47,12 +47,12 @@ const Login: React.FC<LoginProps> = props => {
       <LoginFrom activeKey={type} onTabChange={setType} onSubmit={handleSubmit}>
         <div>
           {status === 'error' && loginType === 'account' && !submitting && (
-            <LoginMessage content="账户或密码错误（admin/ant.design）" />
+            <LoginMessage content="账户或密码错误（admin/admin）" />
           )}
         </div>
         <UserName
           name="userName"
-          placeholder="用户名: admin or user"
+          placeholder="userName: admin or user"
           rules={[
             {
               required: true,
@@ -62,7 +62,7 @@ const Login: React.FC<LoginProps> = props => {
         />
         <Password
           name="password"
-          placeholder="密码: ant.design"
+          placeholder="password: admin"
           rules={[
             {
               required: true,
