@@ -66,7 +66,7 @@ const Command: React.FC<CommandProps> = props => {
         onChange={e => {
           const { dispatch } = props;
           dispatch({
-            type: 'request/changeApiRoute',
+            type: 'request/changeBody',
             payload: { body: e.target.value },
           });
         }}
