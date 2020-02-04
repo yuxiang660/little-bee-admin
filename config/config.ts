@@ -180,7 +180,7 @@ export default {
   manifest: {
     basePath: '/',
   },
-  // To disable mock, add `MOCK=none` to .env file
+  // To disable mock, start with `npm run start:no-mock`
   proxy: {
     '/server/api/': {
       target: 'https://preview.pro.ant.design/',
