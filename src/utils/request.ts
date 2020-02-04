@@ -4,6 +4,7 @@
  */
 import { extend, ResponseError } from 'umi-request';
 import { notification } from 'antd';
+import { getAccessToken } from '@/utils/accessToken';
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -52,6 +53,28 @@ const request = extend({
   errorHandler, // 默认错误处理
   credentials: 'include', // 默认请求是否带上cookie
   getResponse: true,
+});
+
+request.interceptors.request.use((url, options) => {
+  const auth = getAccessToken();
+  if (auth) {
+    return {
+      url,
+      options: {
+        ...options,
+        interceptors: true,
+        headers: {
+          ...options.headers,
+          Authorization: getAccessToken(),
+        },
+        params: {
+          ...options.params,
+        },
+      },
+    };
+  }
+
+  return { url, options };
 });
 
 export default request;

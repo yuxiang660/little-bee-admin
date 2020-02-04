@@ -5,6 +5,7 @@ import { router } from 'umi';
 
 import { fakeAccountLogin } from '@/services/login';
 import { setAuthority } from '@/utils/authority';
+import { setAccessToken } from '@/utils/accessToken';
 import { getPageQuery } from '@/utils/utils';
 
 export interface StateType {
@@ -77,6 +78,7 @@ const Model: LoginModelType = {
   reducers: {
     changeLoginStatus(state, { payload }) {
       setAuthority(payload.currentAuthority);
+      setAccessToken(payload.token);
       return {
         ...state,
         status: payload.status,
