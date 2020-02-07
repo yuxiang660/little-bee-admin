@@ -3,7 +3,7 @@
 </h1>
 
 <h4 align="center">
-  “蜜蜂监工”
+  “蜂监工”
 </h4>
 <h4 align="center">
   作者 -- “搬砖蜜蜂”
