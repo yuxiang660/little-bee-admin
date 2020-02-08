@@ -6,6 +6,7 @@ import styles from './index.less';
 
 declare type OverlayFunc = () => React.ReactNode;
 
+// @ts-ignore
 export interface HeaderDropdownProps extends DropDownProps {
   overlayClassName?: string;
   overlay: React.ReactNode | OverlayFunc;
@@ -13,6 +14,7 @@ export interface HeaderDropdownProps extends DropDownProps {
 }
 
 const HeaderDropdown: React.FC<HeaderDropdownProps> = ({ overlayClassName: cls, ...restProps }) => (
+  // @ts-ignore
   <Dropdown overlayClassName={classNames(styles.container, cls)} {...restProps} />
 );
 

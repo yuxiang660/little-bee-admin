@@ -77,6 +77,7 @@ const LoginItem: React.FC<LoginItemProps> = props => {
 
   const onGetCaptcha = useCallback(async (mobile: string) => {
     const result = await getFakeCaptcha(mobile);
+    // @ts-ignore
     if (result === false) {
       return;
     }
