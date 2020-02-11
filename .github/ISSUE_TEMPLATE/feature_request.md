@@ -4,7 +4,10 @@ about: Suggest an idea for this project
 title: ''
 labels: feature
 assignees: ''
----<!--
+
+---
+
+<!--
   Please fill out each section below, otherwise, your issue will be closed.
 
   Useful Links:
@@ -21,7 +24,8 @@ Brief why we need the feature.
 
 ## What?
 
-Brief what the feature looks like. If the proposal involves a new or changed API, include a basic code example.
+Brief what the feature looks like.
+If the proposal involves a new or changed API, include a basic code example.
 
 ## How?
 

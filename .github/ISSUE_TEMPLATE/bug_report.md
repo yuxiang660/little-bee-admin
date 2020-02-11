@@ -1,38 +1,40 @@
 ---
-name: Bug report
+name: Bug report 🐞
 about: Create a report to help us improve
 title: ''
-labels: ''
+labels: bug
 assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+<!--
+  Please fill out each section below, otherwise, your issue will be closed. This info allows Gatsby maintainers to diagnose (and fix!) your issue as quickly as possible.
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+  Useful Links:
+  - Documentation: https://www.gatsbyjs.org/docs/
+  - How to File an Issue: https://www.gatsbyjs.org/contributing/how-to-file-an-issue/
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+  Before opening a new issue, please search existing issues: https://github.com/yuxiang660/little-bee-blog/issues
+-->
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+## Description
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+Describe the issue that you're seeing.
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+### Steps to reproduce
 
-**Additional context**
-Add any other context about the problem here.
+Clear steps describing how to reproduce the issue. Please please please link to a demo project if possible, this makes your issue _much_ easier to diagnose (seriously).
+
+How to Make a Minimal Reproduction: https://www.gatsbyjs.org/contributing/how-to-make-a-reproducible-test-case/
+
+### Expected result
+
+What should happen?
+
+### Actual result
+
+What happened.
+
+### Environment
+
+Run `gatsby info --clipboard` in your project directory and paste the output here.
