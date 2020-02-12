@@ -13,6 +13,12 @@
 
 ![Demo](https://github.com/yuxiang660/little-bee-admin/blob/master/.github/demo.gif)
 
+# Introduction
+
+- A `Ant Design Pro` based web app for RESTful server, which is protected by `Typescript` and `Jest`
+- Refer to the [blog](https://yuxiang660.github.io/little-bee-client/posts/5/2020-02-10---Little-Bee-Admin-Intro/) for details.
+
+
 # Project Structure
 
 ```js
@@ -50,4 +56,29 @@
 ├── tests                      // 测试配置脚本
 └── tsconfig.json              // 对Typescript文件的主配置
 ```
+
+# Available Scripts
+
+In the project directory, you can run:
+
+### `npm start`
+
+Runs the app in the development mode.<br />
+Open [http://localhost:9191](http://localhost:9191) to view it in the browser.<br />
+The page will reload if you make edits.<br />
+
+### `npm test`
+
+Launches the tests.<br />
+
+### `npm run build`
+
+Builds the app for production to the `build/dist` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+### `npm run analyze`
+
+If your build file is large, you can optimize your code with the analyze command to build and analyze the volume distribution of dependent modules.<br />
+The command will open analyze result in your default browser automatically.
+
 
