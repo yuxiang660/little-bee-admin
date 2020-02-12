@@ -117,7 +117,7 @@ export default {
               name: 'request',
               icon: 'api',
               path: '/request',
-              component: './Request',
+              component: './request',
             },
             {
               component: './404',
