@@ -3,7 +3,7 @@ export default {
   'menu.request': 'Request',
   'menu.more-blocks': 'More Blocks',
   'menu.home': 'Home',
-  'menu.admin': 'admin',
+  'menu.admin': 'Admin',
   'menu.login': 'Login',
   'menu.register': 'Register',
   'menu.register.result': 'Register Result',
