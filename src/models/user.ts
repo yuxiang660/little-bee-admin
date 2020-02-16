@@ -4,16 +4,10 @@ import { Reducer } from 'redux';
 import { queryCurrent, query as queryUsers } from '@/services/user';
 
 export interface CurrentUser {
-  avatar?: string;
   name?: string;
-  title?: string;
-  group?: string;
-  signature?: string;
-  tags?: {
-    key: string;
-    label: string;
-  }[];
+  role?: 'user' | 'guest' | 'admin';
   userid?: string;
+  // TODO: remove this member
   unreadCount?: number;
 }
 
