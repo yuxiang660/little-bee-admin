@@ -7,8 +7,6 @@ export interface CurrentUser {
   name?: string;
   role?: 'user' | 'guest' | 'admin';
   userid?: string;
-  // TODO: remove this member
-  unreadCount?: number;
 }
 
 export interface UserModelState {
@@ -24,7 +22,6 @@ export interface UserModelType {
   };
   reducers: {
     saveCurrentUser: Reducer<UserModelState>;
-    changeNotifyCount: Reducer<UserModelState>;
   };
 }
 
@@ -57,21 +54,6 @@ const UserModel: UserModelType = {
       return {
         ...state,
         currentUser: action.payload || {},
-      };
-    },
-    changeNotifyCount(
-      state = {
-        currentUser: {},
-      },
-      action,
-    ) {
-      return {
-        ...state,
-        currentUser: {
-          ...state.currentUser,
-          notifyCount: action.payload.totalCount,
-          unreadCount: action.payload.unreadCount,
-        },
       };
     },
   },
