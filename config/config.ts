@@ -110,7 +110,7 @@ export default {
               path: '/admin',
               name: 'admin',
               icon: 'crown',
-              component: './Admin',
+              component: './admin',
               authority: ['admin'],
             },
             {
