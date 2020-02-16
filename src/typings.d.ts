@@ -26,7 +26,6 @@ interface Window {
     hitType: 'event' | 'pageview',
     fieldsObject: GAFieldsObject | string,
   ) => void;
-  reloadAuthorized: () => void;
 }
 
 declare let ga: Function;

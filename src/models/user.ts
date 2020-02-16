@@ -2,7 +2,7 @@ import { Effect } from 'dva';
 import { Reducer } from 'redux';
 
 import { queryCurrent, query as queryUsers } from '@/services/user';
-import { setAuthority } from '@/utils/role-authority';
+import { setRoleAuthority } from '@/utils/page-authority';
 
 export interface CurrentUser {
   name?: string;
@@ -52,7 +52,7 @@ const UserModel: UserModelType = {
 
   reducers: {
     saveCurrentUser(state, action) {
-      setAuthority(action.payload.role);
+      setRoleAuthority(action.payload.role);
       return {
         ...state,
         currentUser: action.payload || {},

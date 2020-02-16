@@ -4,7 +4,7 @@ import { stringify } from 'querystring';
 import { router } from 'umi';
 
 import { fakeAccountLogin } from '@/services/login';
-import { setAuthority } from '@/utils/role-authority';
+import { setRoleAuthority } from '@/utils/page-authority';
 import { setAccessToken } from '@/utils/access-token';
 import { getPageQuery } from '@/utils';
 
@@ -75,7 +75,7 @@ const Model: LoginModelType = {
 
   reducers: {
     changeLoginStatus(state, { payload }) {
-      setAuthority(payload.currentAuthority);
+      setRoleAuthority(payload.currentAuthority);
       setAccessToken(payload.token);
       return {
         ...state,

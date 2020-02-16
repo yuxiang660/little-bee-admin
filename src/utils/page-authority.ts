@@ -1,8 +1,12 @@
 import pathRegexp from 'path-to-regexp';
-import RenderAuthorize from '@/components/Authorized';
 import { Route } from '@/models/connect';
 
-export const getAuthorityConfig = (path: string, routeData: Route[]) => {
+export type PageAuthorityType = undefined | string | string[];
+
+export const getPageAuthority: (path: string, routeData: Route[]) => PageAuthorityType = (
+  path: string,
+  routeData: Route[],
+) => {
   let authorities: string[] | string | undefined;
   routeData.forEach(route => {
     // match prefix
@@ -16,7 +20,7 @@ export const getAuthorityConfig = (path: string, routeData: Route[]) => {
       }
       // get children authority recursively
       if (route.routes) {
-        authorities = getAuthorityConfig(path, route.routes) || authorities;
+        authorities = getPageAuthority(path, route.routes) || authorities;
       }
     }
   });
@@ -24,7 +28,7 @@ export const getAuthorityConfig = (path: string, routeData: Route[]) => {
 };
 
 // use localStorage to store the authority info, which might be sent from server in actual project.
-export function getAuthority(str?: string): string | string[] {
+export function getRoleAuthority(str?: string): string | string[] {
   const authorityString =
     typeof str === 'undefined' && localStorage ? localStorage.getItem('antd-pro-authority') : str;
   // authorityString could be admin, "admin", ["admin"]
@@ -47,27 +51,43 @@ export function getAuthority(str?: string): string | string[] {
   return authority;
 }
 
-/* eslint-disable eslint-comments/disable-enable-pair */
-/* eslint-disable import/no-mutable-exports */
-let RoleAuthorizedRender = RenderAuthorize(getAuthority());
-
-// Reload the rights component
-const reloadAuthorized = (): void => {
-  RoleAuthorizedRender = RenderAuthorize(getAuthority());
-};
-
-/**
- * hard code
- * block need it。
- */
-window.reloadAuthorized = reloadAuthorized;
-
-export function setAuthority(authority: string | string[]): void {
+export function setRoleAuthority(authority: string | string[]): void {
   const proAuthority = typeof authority === 'string' ? [authority] : authority;
   localStorage.setItem('antd-pro-authority', JSON.stringify(proAuthority));
-  // auto reload
-  reloadAuthorized();
 }
 
-export { reloadAuthorized };
-export default RoleAuthorizedRender;
+export function filterWithAuthority<T, K>(
+  pageAuthority: PageAuthorityType,
+  target: T,
+  unAuthorized: K,
+): T | K {
+  // 没有判定权限.默认查看所有
+  // Retirement pageAuthority, return target;
+  if (!pageAuthority) {
+    return target;
+  }
+  const currentAuthority = getRoleAuthority();
+  // 数组处理
+  if (Array.isArray(pageAuthority)) {
+    if (Array.isArray(currentAuthority)) {
+      if (currentAuthority.some(item => pageAuthority.includes(item))) {
+        return target;
+      }
+    } else if (pageAuthority.includes(currentAuthority)) {
+      return target;
+    }
+    return unAuthorized;
+  }
+  // string 处理
+  if (typeof pageAuthority === 'string') {
+    if (Array.isArray(currentAuthority)) {
+      if (currentAuthority.some(item => pageAuthority === item)) {
+        return target;
+      }
+    } else if (pageAuthority === currentAuthority) {
+      return target;
+    }
+    return unAuthorized;
+  }
+  throw new Error('unsupported page authority');
+}
