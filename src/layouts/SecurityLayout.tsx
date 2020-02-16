@@ -35,8 +35,14 @@ class SecurityLayout extends React.Component<SecurityLayoutProps, SecurityLayout
   render() {
     const { isReady } = this.state;
     const { children, loading, currentUser } = this.props;
-    // You can replace it to your authentication rule (such as check token exists)
-    // 你可以把它替换成你自己的登录认证规则（比如判断 token 是否存在）
+    // Security Logic
+    // 1. Every pages should use SecurityLayout at first except for "/user/login" page.
+    // 2. When rendering SecurityLayout, it will fetch the current user with stored access token from the server.
+    // 3. The token was stored in "sessionStorage" because of last login. If we haven't login, the token is empty.
+    // 4. If the token is valid, the server will send back current user information (name, userid, role ...).
+    // 5. If the token is invalid, the server will send back guest user information (role is "guest").
+    // 6. When the web app receives current user information, it updates user model and role authority.
+    // 7. Continue rendering.
     const isLogin = currentUser && currentUser.userid;
     const queryString = stringify({
       redirect: window.location.href,
