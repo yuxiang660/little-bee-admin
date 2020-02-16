@@ -34,7 +34,7 @@ const apiRoutes: ApiRoutesMap = {
   login: {
     method: 'POST',
     url: '/api/login/account',
-    body: '{"userName":"","password":"","mobile":"","captcha":""}',
+    body: '{"userName":"","password":""}',
   },
   queryCaptcha: { method: 'GET', url: '/api/login/captcha?mobile=' },
 

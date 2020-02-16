@@ -6,10 +6,10 @@ import { connect } from 'dva';
 import { StateType } from '@/models/login';
 import { LoginParamsType } from '@/services/login';
 import { ConnectState } from '@/models/connect';
-import styles from './style.less';
-import LoginFrom from './components/Login';
+import styles from './index.less';
+import LoginForm from './form';
 
-const { UserName, Password, Submit } = LoginFrom;
+const { UserName, Password, Submit } = LoginForm;
 interface LoginProps {
   dispatch: Dispatch<AnyAction>;
   userLogin: StateType;
@@ -43,7 +43,7 @@ const Login: React.FC<LoginProps> = props => {
   };
   return (
     <div className={styles.main}>
-      <LoginFrom activeKey="account" onSubmit={handleSubmit}>
+      <LoginForm onSubmit={handleSubmit}>
         <div>
           {status === 'error' && !submitting && (
             <LoginMessage content="账户或密码错误（admin/admin）" />
@@ -87,7 +87,7 @@ const Login: React.FC<LoginProps> = props => {
             注册账户
           </Link>
         </div>
-      </LoginFrom>
+      </LoginForm>
     </div>
   );
 };
