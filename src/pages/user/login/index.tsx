@@ -4,9 +4,9 @@ import { Dispatch, AnyAction } from 'redux';
 import { Link } from 'umi';
 import { connect } from 'dva';
 import { StateType } from '@/models/login';
-import styles from './style.less';
 import { LoginParamsType } from '@/services/login';
 import { ConnectState } from '@/models/connect';
+import styles from './style.less';
 import LoginFrom from './components/Login';
 
 const { UserName, Password, Submit } = LoginFrom;
@@ -31,22 +31,21 @@ const LoginMessage: React.FC<{
 
 const Login: React.FC<LoginProps> = props => {
   const { userLogin = {}, submitting } = props;
-  const { status, type: loginType } = userLogin;
+  const { status } = userLogin;
   const [autoLogin, setAutoLogin] = useState(true);
-  const [type, setType] = useState<string>('account');
 
   const handleSubmit = (values: LoginParamsType) => {
     const { dispatch } = props;
     dispatch({
       type: 'login/login',
-      payload: { ...values, type },
+      payload: { ...values },
     });
   };
   return (
     <div className={styles.main}>
-      <LoginFrom activeKey={type} onTabChange={setType} onSubmit={handleSubmit}>
+      <LoginFrom activeKey="account" onSubmit={handleSubmit}>
         <div>
-          {status === 'error' && loginType === 'account' && !submitting && (
+          {status === 'error' && !submitting && (
             <LoginMessage content="账户或密码错误（admin/admin）" />
           )}
         </div>

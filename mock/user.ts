@@ -35,7 +35,7 @@ export default {
   // GET POST 可省略
   'GET /api/users': (req: Request, res: Response) => {
     if (!checkAccessToken(req.headers.authorization)) {
-      res.status(401).send({
+      return res.status(401).send({
         status: 401,
         error: 'Unauthorized',
         message: 'Unauthorized',
@@ -61,11 +61,10 @@ export default {
     ]);
   },
   'POST /api/login/account': (req: Request, res: Response) => {
-    const { password, userName, type } = req.body;
+    const { password, userName } = req.body;
     if (password === 'admin' && userName === 'admin') {
       res.status(200).send({
         status: 'ok',
-        type,
         currentAuthority: 'admin',
         token: {
           access_token: 'admin_token',
@@ -78,7 +77,6 @@ export default {
     if (password === 'admin' && userName === 'user') {
       res.status(200).send({
         status: 'ok',
-        type,
         currentAuthority: 'user',
         token: {
           access_token: 'user_token',
@@ -90,7 +88,6 @@ export default {
     }
     res.status(401).send({
       status: 'error',
-      type,
       currentAuthority: 'guest',
     });
   },
