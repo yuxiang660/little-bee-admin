@@ -63,7 +63,7 @@ export default {
   'POST /api/login/account': (req: Request, res: Response) => {
     const { password, userName } = req.body;
     if (password === 'admin' && userName === 'admin') {
-      res.status(200).send({
+      return res.status(200).send({
         status: 'ok',
         currentAuthority: 'admin',
         token: {
@@ -72,10 +72,9 @@ export default {
           expires_at: 1580827314,
         },
       });
-      return;
     }
     if (password === 'admin' && userName === 'user') {
-      res.status(200).send({
+      return res.status(200).send({
         status: 'ok',
         currentAuthority: 'user',
         token: {
@@ -84,11 +83,15 @@ export default {
           expires_at: 1580827314,
         },
       });
-      return;
     }
-    res.status(401).send({
+    return res.status(401).send({
       status: 'error',
       currentAuthority: 'guest',
+      token: {
+        access_token: '',
+        token_type: '',
+        expires_at: 0,
+      },
     });
   },
   'POST /api/register': (req: Request, res: Response) => {

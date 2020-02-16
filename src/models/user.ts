@@ -2,7 +2,7 @@ import { Effect } from 'dva';
 import { Reducer } from 'redux';
 
 import { queryCurrent, query as queryUsers } from '@/services/user';
-import { setAuthority } from '@/utils/authority';
+import { setAuthority } from '@/utils/role-authority';
 
 export interface CurrentUser {
   name?: string;

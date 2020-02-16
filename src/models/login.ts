@@ -4,9 +4,9 @@ import { stringify } from 'querystring';
 import { router } from 'umi';
 
 import { fakeAccountLogin } from '@/services/login';
-import { setAuthority } from '@/utils/authority';
-import { setAccessToken } from '@/utils/accessToken';
-import { getPageQuery } from '@/utils/utils';
+import { setAuthority } from '@/utils/role-authority';
+import { setAccessToken } from '@/utils/access-token';
+import { getPageQuery } from '@/utils';
 
 export interface StateType {
   status?: 'ok' | 'error';

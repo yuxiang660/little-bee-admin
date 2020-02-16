@@ -4,7 +4,7 @@
  */
 import { extend, ResponseError } from 'umi-request';
 import { notification } from 'antd';
-import { getAccessToken } from '@/utils/accessToken';
+import { getAccessToken } from '@/utils/access-token';
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',

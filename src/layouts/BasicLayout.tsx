@@ -14,11 +14,10 @@ import { Link } from 'umi';
 import { Dispatch } from 'redux';
 import { connect } from 'dva';
 import { Result, Button } from 'antd';
-import Authorized from '@/utils/Authorized';
 import Footer from '@/components/Footer';
 import RightContent from '@/components/GlobalHeader/RightContent';
 import { ConnectState } from '@/models/connect';
-import { getAuthorityFromRouter } from '@/utils/utils';
+import RoleAuthorizedRender, { getAuthorityConfig } from '@/utils/role-authority';
 import logo from '../assets/logo.svg';
 
 const noMatch = (
@@ -55,7 +54,7 @@ export type BasicLayoutContext = { [K in 'location']: BasicLayoutProps[K] } & {
 const menuDataRender = (menuList: MenuDataItem[]): MenuDataItem[] =>
   menuList.map(item => {
     const localItem = { ...item, children: item.children ? menuDataRender(item.children) : [] };
-    return Authorized.check(item.authority, localItem, null) as MenuDataItem;
+    return RoleAuthorizedRender.check(item.authority, localItem, null) as MenuDataItem;
   });
 
 const footerRender: BasicLayoutProps['footerRender'] = Footer;
@@ -93,9 +92,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
     }
   }; // get children authority
 
-  const authorized = getAuthorityFromRouter(props.route.routes, location.pathname || '/') || {
-    authority: undefined,
-  };
+  const authority = getAuthorityConfig(location.pathname || '/', props.route.routes!);
   return (
     <ProLayout
       logo={logo}
@@ -135,9 +132,9 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
       {...props}
       {...settings}
     >
-      <Authorized authority={authorized!.authority} noMatch={noMatch}>
+      <RoleAuthorizedRender authority={authority} noMatch={noMatch}>
         {children}
-      </Authorized>
+      </RoleAuthorizedRender>
     </ProLayout>
   );
 };

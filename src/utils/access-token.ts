@@ -17,7 +17,7 @@ export function getAccessToken(): string {
 }
 
 export function setAccessToken(token: AccessTokenType): void {
-  sessionStorage.setItem(accessTokenKey, JSON.stringify(token));
+  sessionStorage.setItem(accessTokenKey, JSON.stringify(token) || '');
 }
 
 export function clearAccessToken() {
